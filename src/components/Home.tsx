@@ -3,8 +3,16 @@ import { Container,Row } from "react-bootstrap";
 import Cardone from "./Card";
 import "./Home.css";
 
+interface ApiProps{
+  albumId:number
+  id:number
+  title:string
+  url:string
+  thumbnailUrl:string
+}
+
 const Home:React.FC = () =>{
-    const [ users, setUsers ] = useState<any[]>([]);
+    const [ users, setUsers ] = useState<ApiProps[]>([]);
 
     let API :string ="https://jsonplaceholder.typicode.com/photos";
 
@@ -13,9 +21,8 @@ const Home:React.FC = () =>{
           const res = await fetch(url);
           const data = await res.json();
           setUsers(data);
-          console.log(users)
         } catch (error) {
-          console.log("error is getting")
+          console.log("error is getting "+ error)
         }
       }
 
